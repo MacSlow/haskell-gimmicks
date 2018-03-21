@@ -1,6 +1,3 @@
--- ghc -O2 -dynamic -threaded -rtsopts -Wall -Werror --make random-points-on-sphere
--- sstrip random-points-on-sphere
-
 import System.IO ()
 import System.Random
 import Graphics.Gloss

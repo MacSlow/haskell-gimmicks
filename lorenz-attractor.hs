@@ -1,6 +1,3 @@
--- ghc -O2 -dynamic -threaded -rtsopts -Wall -Werror --make lorenz-attractor
--- sstrip lorenz-attractor
-
 import System.IO ()
 import Graphics.Gloss
 import Graphics.Gloss.Geometry.Angle
