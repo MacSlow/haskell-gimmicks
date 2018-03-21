@@ -1,0 +1,39 @@
+The first steps with Haskell in my favourite domain: computer-graphics. Not
+overly flashy, but not too simple either. There is animation, randomness and 3D
+so it should be a nice playground for other Haskell-beginners like me, who get
+bored by tic-tac-toe, project euler and the like.
+
+There are currently four examples:
+
+ * curves.hs - 2D cubic bézier-curves
+ * 3d-in-2d.hs - perspective camera, projection and 3D cubic bézier-curves
+ * random-points-on-sphere.hs - pretty self-explanatory
+ * lorenz-attractor.hs - the famous ode-system
+
+Here's a short screencast:
+
+ * https://www.youtube.com/embed/5NTQx3-Up-U
+
+The dependencies are modest:
+
+ * make 4.11
+ * ghc 8.2.2
+ * gloss 1.11.1.1
+
+I compiles and runs under recent Linux-distributions (e.g. Ubuntu 16.04 and up).
+Furhtermore it also works under Windows 7 and higher. Only you cannot use the
+"-dynamic" option on this platform. It probably also works on recent intel-based
+MacOS machines, but I've not tested it. Anyone who does please report back your
+findings.
+
+How to compile:
+
+ 1> make
+
+That's all there is to it. Then just run the different binaries. I'm not using
+cabal and/or stack, since I'm still very new to the whole Haskell-ecosystem and
+not very familiar with the usual procedures there. For the provided examples the
+plain Makefile works just fine.
+
+Feedback and patches are welcome.
+
