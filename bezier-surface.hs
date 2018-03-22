@@ -42,15 +42,6 @@ type PointGenerator = (Float ->
                        Point3D ->
                        Point3D)
 
-curvePoint :: PointGenerator ->
-              Float ->
-              Point3D ->
-              Point3D ->
-              Point3D ->
-              Point3D ->
-              Point3D
-curvePoint pg t cp0 cp1 cp2 cp3 = pg t cp0 cp1 cp2 cp3
-
 cubic :: PointGenerator
 cubic t cp0 cp1 cp2 cp3 = (xnew, ynew, znew)
    where (x0, y0, z0) = cp0
@@ -67,11 +58,11 @@ cubic t cp0 cp1 cp2 cp3 = (xnew, ynew, znew)
          znew = func z0 z1 z2 z3
 
 surfacePoint :: Float -> Float -> [Point3D] -> Point3D
-surfacePoint s t ctrls = curvePoint cubic t cp0 cp1 cp2 cp3
-    where cp0 = curvePoint cubic s (ctrls!!0) (ctrls!!1) (ctrls!!2) (ctrls!!3)
-          cp1 = curvePoint cubic s (ctrls!!4) (ctrls!!5) (ctrls!!6) (ctrls!!7)
-          cp2 = curvePoint cubic s (ctrls!!8) (ctrls!!9) (ctrls!!10) (ctrls!!11)
-          cp3 = curvePoint cubic s (ctrls!!12) (ctrls!!13) (ctrls!!14) (ctrls!!15)
+surfacePoint s t ctrls = cubic t cp0 cp1 cp2 cp3
+    where cp0 = cubic s (ctrls!!0) (ctrls!!1) (ctrls!!2) (ctrls!!3)
+          cp1 = cubic s (ctrls!!4) (ctrls!!5) (ctrls!!6) (ctrls!!7)
+          cp2 = cubic s (ctrls!!8) (ctrls!!9) (ctrls!!10) (ctrls!!11)
+          cp3 = cubic s (ctrls!!12) (ctrls!!13) (ctrls!!14) (ctrls!!15)
 
 patch :: Int -> [Point3D] -> [Point3D]
 patch res ctrlPts = map (\(s, t) -> surfacePoint s t ctrlPts) $
