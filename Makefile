@@ -13,7 +13,10 @@ SRC3  = lorenz-attractor.hs
 APP4  = random-points-on-sphere
 SRC4  = random-points-on-sphere.hs
 
-all: $(APP1) $(APP2) $(APP3) $(APP4)
+APP5  = bezier-surface
+SRC5  = bezier-surface.hs
+
+all: $(APP1) $(APP2) $(APP3) $(APP4) $(APP5)
 
 $(APP1): $(SRC1)
 	$(HC) $(FLAGS) --make $< -o $@
@@ -31,6 +34,10 @@ $(APP4): $(SRC4)
 	$(HC) $(FLAGS) --make $< -o $@
 	strip $@
 
+$(APP5): $(SRC5)
+	$(HC) $(FLAGS) --make $< -o $@
+	strip $@
+
 clean:
-	rm *.o *.hi $(APP1) $(APP2) $(APP3) $(APP4)
+	rm *.o *.hi $(APP1) $(APP2) $(APP3) $(APP4) $(APP5)
 
