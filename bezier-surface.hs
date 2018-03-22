@@ -49,13 +49,13 @@ cubic t cp0 cp1 cp2 cp3 = (xnew, ynew, znew)
          (x2, y2, z2) = cp2
          (x3, y3, z3) = cp3
          a = 1.0 - t
-         func = (\foo0 foo1 foo2 foo3 -> a^(3::Int)*foo0 +
-                3.0*a^(2::Int)*t*foo1 +
-                3.0*a*t^(2::Int)*foo2 +
-                t^(3::Int)*foo3)
-         xnew = func x0 x1 x2 x3
-         ynew = func y0 y1 y2 y3
-         znew = func z0 z1 z2 z3
+         evalCoord = (\cpCoord0 cpCoord1 cpCoord2 cpCoord3->a^(3::Int)*cpCoord0+
+                      3.0*a^(2::Int)*t*cpCoord1 +
+                      3.0*a*t^(2::Int)*cpCoord2 +
+                      t^(3::Int)*cpCoord3)
+         xnew = evalCoord x0 x1 x2 x3
+         ynew = evalCoord y0 y1 y2 y3
+         znew = evalCoord z0 z1 z2 z3
 
 surfacePoint :: Float -> Float -> [Point3D] -> Point3D
 surfacePoint s t ctrls = cubic t cp0 cp1 cp2 cp3
