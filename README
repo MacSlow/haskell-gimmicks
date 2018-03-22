@@ -9,6 +9,7 @@ There are currently four examples:
  * 3d-in-2d.hs - perspective camera, projection and 3D cubic bézier-curves
  * random-points-on-sphere.hs - pretty self-explanatory
  * lorenz-attractor.hs - the famous ode-system
+ * bezier-surface.hs - cubic bézier-patch
 
 Here's a short screencast:
 
