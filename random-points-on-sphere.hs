@@ -42,22 +42,21 @@ rotateZ degree (x, y, z) = (c*x + s*y, -s*x + c*y, z)
           s = sin radiant
 
 project :: Point3D -> Point
-project (x0, y0, z0) = (x', y')
-    where (ax, ay, az) = (x0, y0, z0)
-          (cx, cy, cz) = (0.0, 0.0, 0.0)
-          (x, y, z)    = (ax - cx, ay - cy, az - cz)
-          (a, b, c)    = (degToRad 0.0, degToRad 0.0, degToRad 0.0)
-          (ex, ey, ez) = (0.0, 0.0, 300.0)
-          (dx, dy, dz) = (cosy*(sinz*y + cosz*x) - siny*z,
-                          sinx*(cosy*z + siny*(sinz*y + cosz*x)) +
-                          cosx*(cosz*y - sinz*x),
-                          cosx*(cosy*z + siny*(sinz*y + cosz*x)) -
-                          sinx*(cosz*y - sinz*x)) 
-          (cosx, sinx) = (cos a, sin a)
-          (cosy, siny) = (cos b, sin b)
-          (cosz, sinz) = (cos c, sin c)
-          x' = ez/dz*dx - ex
-          y' = ez/dz*dy - ey
+project (x0, y0, z0) = (projectedX, projectedY)
+    where (lookAtX, lookAtY, lookAtZ) = (0.0, 0.0, 0.0)
+          (x, y, z) = (x0 - lookAtX, y0 - lookAtY, z0 - lookAtZ)
+          (alpha, beta, gamma) = (degToRad 0.0, degToRad 0.0, degToRad 0.0)
+          (eyeX, eyeY, eyeZ) = (0.0, 0.0, 300.0)
+          (cosAlpha, sinAlpha) = (cos alpha, sin alpha)
+          (cosBeta, sinBeta) = (cos beta, sin beta)
+          (cosGamma, sinGamma) = (cos gamma, sin gamma)
+          (dx, dy, dz) = (cosBeta*(sinGamma*y + cosGamma*x) - sinBeta*z,
+                          sinAlpha*(cosBeta*z + sinBeta*(sinGamma*y + cosGamma*x)) +
+                          cosAlpha*(cosGamma*y - sinGamma*x),
+                          cosAlpha*(cosBeta*z + sinBeta*(sinGamma*y + cosGamma*x)) -
+                          sinAlpha*(cosGamma*y - sinGamma*x)) 
+          projectedX = eyeZ/dz*dx - eyeX
+          projectedY = eyeZ/dz*dy - eyeY
 
 move :: Point3D -> Point3D -> Point3D
 move (dx, dy, dz) (x, y, z) = (x + dx, y + dy, z + dz)
