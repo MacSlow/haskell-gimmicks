@@ -16,7 +16,10 @@ SRC4  = random-points-on-sphere.hs
 APP5  = bezier-surface
 SRC5  = bezier-surface.hs
 
-all: $(APP1) $(APP2) $(APP3) $(APP4) $(APP5)
+APP6  = random-points-on-plane
+SRC6  = random-points-on-plane.hs
+
+all: $(APP1) $(APP2) $(APP3) $(APP4) $(APP5) $(APP6)
 
 $(APP1): $(SRC1)
 	$(HC) $(FLAGS) --make $< -o $@
@@ -38,6 +41,10 @@ $(APP5): $(SRC5)
 	$(HC) $(FLAGS) --make $< -o $@
 	strip $@
 
+$(APP6): $(SRC6)
+	$(HC) $(FLAGS) --make $< -o $@
+	strip $@
+
 clean:
-	rm *.o *.hi $(APP1) $(APP2) $(APP3) $(APP4) $(APP5)
+	rm *.o *.hi $(APP1) $(APP2) $(APP3) $(APP4) $(APP5) $(APP6)
 

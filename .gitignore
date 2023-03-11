@@ -5,3 +5,4 @@ lorenz-attractor
 random-points-on-sphere
 *.hi
 *.o
+random-points-on-plane
